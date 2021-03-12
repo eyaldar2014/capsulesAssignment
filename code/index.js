@@ -9,11 +9,21 @@ let saveArrays = {}
 
 
 const table = document.querySelector('#table')
+const searchDropDown = document.querySelector('#searchDropDown')
+const searchTextBox = document.querySelector('#searchTextBox')
+const tableHead = document.querySelector('#tableHead')
 
-// console.log(table)
+// console.log(tableHead)
 
+// searchTextBox.addEventListener('click', searchEngine)
+searchTextBox.addEventListener('keyup', searchEngineType)
 
-
+function focusOnSearch() {
+  searchTextBox.value = ''
+}
+function focusNotOnSearch() {
+  searchTextBox.value = 'search...'
+}
 
 getApiInfo()
 
@@ -37,7 +47,7 @@ async function getApiExtraInfo(person, n) {
   apiSecondArray.push(extraInfo)
 
   if (n === apiSecondArray.length) {
-    apiSecondArray = apiSecondArray.sort(function(a,b){
+    apiSecondArray = apiSecondArray.sort(function (a, b) {
       return a.id - b.id
     })
 
@@ -62,9 +72,9 @@ function apiIsDone() {
     mainArray.push(temp)
   }
 
+  buildSearchDropDown()
   return makeTable()
 }
-
 function makeTable() {
 
   mainArray.forEach(person => {
@@ -93,9 +103,20 @@ function makeTable() {
   })
 }
 
+
 function deleteRow(e) {
   if (e.target.innerHTML === 'deleteButton') {
     table.removeChild(e.target.parentElement)
+    let currentRow = e.target.parentElement
+    let idNumber = parseInt(currentRow.childNodes[0].innerHTML)
+
+    let n = -1
+    mainArray.forEach(element => {
+      n++
+      if (element.id === idNumber) {
+        mainArray.splice(n, 1)
+      }
+    })
   }
 
   else {
@@ -109,7 +130,7 @@ function deleteRow(e) {
     currentDeleteBtn.innerHTML = 'deleteButton'
 
     for (let i = 1; i < 8; i++) {
-      currentRow.childNodes[i].innerHTML = memory[i-1]
+      currentRow.childNodes[i].innerHTML = memory[i - 1]
     }
   }
 }
@@ -139,9 +160,59 @@ function updateRow(e) {
     currentUpdateBtn.innerHTML = 'updateButton'
     currentDeleteBtn.innerHTML = 'deleteButton'
 
+
+
+    //thats why i should have worked with classes : change the list of all existing people and their values is 
+    // very hard to manipulate, because there is need to find the exact index in the original list 
+    // + as each person is declared in object, its automatically orders it in alphabetic way
+    // and later its impossoble simplly to match between the table and the array in the code... :
+
+    let index = 0
+    let idNumber = parseInt(currentRow.childNodes[0].innerHTML)
+    let n = -1
+    mainArray.forEach(element => {
+      n++
+      if (element.id === idNumber) {
+        index = n
+      }
+    })
+
+    let currnetObg = mainArray[index]
+    let headers = document.querySelectorAll('th')
+
     for (let i = 1; i < 8; i++) {
+      
+      let x = headers[i].innerHTML
+      if (x === 'first name'){ // translate table name to object key name
+        x = "firstName"
+      }
+      if (x === 'last name'){
+        x = "lastName"
+      }
+
       let tempValue = currentRow.childNodes[i].childNodes[0].value
       currentRow.childNodes[i].innerHTML = tempValue
+            
+      for (let key in currnetObg){
+        if (key === x){ //id,firstname,etc
+          currnetObg[key] = tempValue //value
+        }
+      }
     }
-  } 
+    console.log(mainArray[index])
+  }
+}
+
+//build search options
+function buildSearchDropDown() {
+
+  for (let key in mainArray[0]) {
+    // console.log(key)
+    searchDropDown.innerHTML = searchDropDown.innerHTML + '<option>' + key + '</option>'
+  }
+}
+
+function searchEngineType() {
+  console.log('s')
+
 }

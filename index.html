@@ -13,9 +13,18 @@
 
 <body>
 
+  <div id="searchAndSortContainer">
+    <input onfocus="focusOnSearch()" onblur="focusNotOnSearch()" type="text" id="searchTextBox" value="search...">
+    <select name="category" id="searchDropDown"></select>
+    <div><br></div>
+    <select name="category" id="sortDropDown"></select>
+    <input type="button" name="sort" id="sortBtn" value="click to sort">
+  </div>
+
   <table id="tableContainer">
     <tbody id="table">
-      <!-- <thead>
+      <thead>
+        <tr id="tableHead">
         <th>id</th>
         <th>first name</th>
         <th>last name</th>
@@ -24,7 +33,8 @@
         <th>city</th>
         <th>gender</th>
         <th>hobby</th>
-      </thead> -->
+      </tr>
+      </thead>
     </tbody>
   </table>
 

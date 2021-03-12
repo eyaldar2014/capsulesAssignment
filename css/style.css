@@ -12,6 +12,7 @@ td{
   padding: 10px;
   min-width: 100px;
   border: 1px solid red;
+  border-radius: 10px;
 }
 
 .btn{
@@ -25,4 +26,11 @@ td{
 
 .update{
   background-color: blue;
+}
+
+#searchAndSortContainer{
+  min-width: 300px;
+  width: 1200px;
+  background-color: green;
+  padding: 50px;
 }
