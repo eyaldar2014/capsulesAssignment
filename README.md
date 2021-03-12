@@ -21,6 +21,10 @@ plan :
   - 20 minutes
 - add buttons to remove and edit person\row
   - 40 minutes
+
+so, its been 3 hours. i didnt use classes, no need. for now, all acomplished: there is no infoCenter for updates. but table is fuctioning with buttons
+
+
 - build search
   - check with myself in 2 hours
 - sort ways
