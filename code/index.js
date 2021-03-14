@@ -1,6 +1,9 @@
 // console.log('s')
 
 const api = 'https:appleseed-wa.herokuapp.com/api/users/'
+const proxyLink = 'https://api.allorigins.win/get?url='
+// const proxyLink = ''
+
 let apiFirstArray = []
 let apiSecondArray = []
 
@@ -29,28 +32,29 @@ getApiInfo()
 
 async function getApiInfo() {
 
-  const infoStage1 = await fetch(api)
+  const infoStage1 = await fetch(proxyLink + api)
+  // console.log(infoStage1)
   const info = await infoStage1.json()
-  apiFirstArray = info
-  // console.log(apiFirstArray)
+  apiFirstArray = JSON.parse(info.contents)
 
-  info.forEach(person => {
-    getApiExtraInfo(person, info.length)
+  apiFirstArray.forEach(person => {
+    getApiExtraInfo(person, apiFirstArray.length)
   });
 
   return true
 }
 async function getApiExtraInfo(person, n) {
 
-  const infoStage2 = await fetch(api + (person.id).toString())
+  const infoStage2 = await fetch(proxyLink + api + (person.id).toString())
   const extraInfo = await infoStage2.json() //array
-  apiSecondArray.push(extraInfo)
+  let extraInfo2 = JSON.parse(extraInfo.contents)
+  apiSecondArray.push(extraInfo2)
 
   if (n === apiSecondArray.length) {
     apiSecondArray = apiSecondArray.sort(function (a, b) {
       return a.id - b.id
     })
-
+    // console.log(apiFirstArray)
     // console.log(apiSecondArray)
     return apiIsDone()
   }
