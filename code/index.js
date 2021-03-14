@@ -5,9 +5,9 @@ const api = 'https:appleseed-wa.herokuapp.com/api/users/'
 // const proxyLink = 'https://api.codetabs.com/v1/proxy?quest='
 // const proxyLink = 'https://yacdn.org/proxy/'
 // const proxyLink = 'http://alloworigin.com/get?url='
-const proxy = 'https://api.codetabs.com/v1/proxy/?quest=';
-
-const proxyLink = ''
+s
+const proxyLink = 'https://api.codetabs.com/v1/proxy/?quest='
+// const proxyLink = ''
 
 let apiFirstArray = []
 let apiSecondArray = []
@@ -193,20 +193,20 @@ function updateRow(e) {
     let headers = document.querySelectorAll('th')
 
     for (let i = 1; i < 8; i++) {
-      
+
       let x = headers[i].innerHTML
-      if (x === 'first name'){ // translate table name to object key name
+      if (x === 'first name') { // translate table name to object key name
         x = "firstName"
       }
-      if (x === 'last name'){
+      if (x === 'last name') {
         x = "lastName"
       }
 
       let tempValue = currentRow.childNodes[i].childNodes[0].value
       currentRow.childNodes[i].innerHTML = tempValue
-            
-      for (let key in currnetObg){
-        if (key === x){ //id,firstname,etc
+
+      for (let key in currnetObg) {
+        if (key === x) { //id,firstname,etc
           currnetObg[key] = tempValue //value
         }
       }
