@@ -48,7 +48,7 @@ async function getApiInfo() {
     getApiExtraInfo(person, info.length)
   });
 
-  console.log(info)
+  // console.log(info)
   return true
 }
 async function getApiExtraInfo(person, n) {
