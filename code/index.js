@@ -39,10 +39,11 @@ async function getApiInfo() {
   // apiFirstArray = JSON.parse(info.contents)
   apiFirstArray = info
 
-  info.forEach(person => {
-    getApiExtraInfo(person, info.length)
-  });
+  // info.forEach(person => {
+  //   getApiExtraInfo(person, info.length)
+  // });
 
+  console.log(info)
   return true
 }
 async function getApiExtraInfo(person, n) {
