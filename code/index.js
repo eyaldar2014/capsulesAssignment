@@ -5,9 +5,9 @@ const api = 'https:appleseed-wa.herokuapp.com/api/users/'
 // const proxyLink = 'https://api.codetabs.com/v1/proxy?quest='
 // const proxyLink = 'https://yacdn.org/proxy/'
 // const proxyLink = 'http://alloworigin.com/get?url='
-s
-const proxyLink = 'https://api.codetabs.com/v1/proxy/?quest='
-// const proxyLink = ''
+
+// const proxyLink = 'https://api.codetabs.com/v1/proxy/?quest='
+const proxyLink = ''
 
 let apiFirstArray = []
 let apiSecondArray = []
@@ -44,6 +44,7 @@ async function getApiInfo() {
   // apiFirstArray = JSON.parse(info.contents)
   apiFirstArray = info
 
+  console.log(infoStage1)
   info.forEach(person => {
     getApiExtraInfo(person, info.length)
   });
