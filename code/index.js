@@ -37,7 +37,7 @@ getApiInfo()
 
 async function getApiInfo() {
 
-  const infoStage1 = await fetch(proxyLink + api)
+  const infoStage1 = await fetch(api)
   // console.log(infoStage1)
   const info = await infoStage1.json()
   // console.log(info)
@@ -54,7 +54,7 @@ async function getApiInfo() {
 }
 async function getApiExtraInfo(person, n) {
 
-  const infoStage2 = await fetch(proxyLink + api + (person.id).toString())
+  const infoStage2 = await fetch(api + (person.id).toString())
   const extraInfo = await infoStage2.json() //array
   // let extraInfo2 = JSON.parse(extraInfo.contents)
   apiSecondArray.push(extraInfo)
